@@ -36,10 +36,11 @@
 
                 <div class="form-group col-md-4">
                     <label for="state">State</label>
-                    <select id="state" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>Georgia</option>
-                        <option>Hawaii</option>
+                    <select id="state" class="form-control" required>
+                        <option selected value="">Choose...</option>
+                        <option value="NY">New York</option>
+                        <option value="GA">Georgia</option>                        
+                        <option value="CA">California</option>
                     </select>
                 </div>
 
@@ -57,10 +58,10 @@
 
                 <div class="form-group col-md-6">
                     <label for="country">Country</label>
-                    <select id="country" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>United States</option>
-                        <option>Canada</option>
+                    <select id="country" class="form-control" required>
+                        <option selected value="">Choose...</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
                     </select>
                 </div>
             </div>           
@@ -121,6 +122,25 @@
         </form>
 
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="mainModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" id="mainModalClose">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id="mainModalBody">            
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js" integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA==" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

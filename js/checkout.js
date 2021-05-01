@@ -1,14 +1,68 @@
 const formCheckout = document.querySelector('.form-checkout');
 
 
-formCheckout.addEventListener('submit', (e) => {
+const showModalMessage = (title, message) => {
+    const modalTitle = document.querySelector('#mainModalLabel');
+    const modalBody = document.querySelector('#mainModalBody');
 
+    modalTitle.textContent = title;
+    modalBody.textContent = message;
+
+    $('#mainModal').modal("show");
+}
+
+formCheckout.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const products = JSON.parse(localStorage.getItem('cart'));
+
+    const orderTotal = products.reduce((acc, curr) => {
+        acc += curr.price;
+
+        return acc;
+    }, 0);
+
+
+    const billing = {
+        street: formCheckout.street.value,
+        city: formCheckout.city.value,
+        state: formCheckout.state.value,
+        zipcode: formCheckout.zipcode.value,
+        phone: formCheckout.phone.value,
+        country: formCheckout.country.value,
+        cardName: formCheckout.card_name.value,
+        cardNumber: formCheckout.card_number.value,
+        cardExpiration: formCheckout.card_expiration.value,
+        cardCVV: formCheckout.card_cvv.value,
+        totalOrder: orderTotal
+    };
+    
+
+    let payload = {
+        billing: billing,
+        cart: products
+    }
+
+    fetch('save_order.php', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+            "Content-Type" : " application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        //console.log(data);
+
+        showModalMessage('Online Transaction', data.message);
+    })
+    .catch(err => console.log(err));
+
 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    const btnMainModalClose = document.querySelector('#mainModalClose');
     const cardNumberHelpBlock = document.querySelector('#cardNumberHelpBlock');
     /*
         Amex : 34...
@@ -48,7 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardNumberHelpBlock.textContent = "";
             }            
         }
-    })
+    });
+
+    btnMainModalClose.addEventListener('click', () => {               
+        $('#mainModal').modal("hide");
+        // redirect to home page
+    });
 
 });
 
