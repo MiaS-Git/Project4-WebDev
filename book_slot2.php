@@ -87,9 +87,9 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
             <br>
             <p>
                 <small>
-                    <img src="images/icon/red_block.png" height="20px" width="20px" style="border:1px solid;">
+                    <img src="images/red_block.png" height="20px" width="20px" style="border:1px solid;">
                     slot already booked<br>
-                    <img src=" images/icon/white_block.png" height="20px" width="20px" style="border:1px solid;">
+                    <img src=" images/white_block.png" height="20px" width="20px" style="border:1px solid;">
                     slot available
                 </small>
             </p>
