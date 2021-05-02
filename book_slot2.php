@@ -34,7 +34,6 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
         }
 
         body {
-            background-image: url('images/wall.jpg');
             position: auto;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -55,7 +54,7 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
             ?>
                     <div class="col-lg-2">
                         <hr>
-                        <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?slot_id=<?php echo $data['slot_id']; ?>&&user_id=<?php echo $user_id; ?>">Slot
+                        <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="inlcude/confirm_slot.php?slot_id=<?php echo $data['slot_id']; ?>&&uid=<?php echo 1; ?>">Slot
                             <?php echo $data['slot_id']; ?>
                         </a>
                     </div>
@@ -70,7 +69,7 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
                     ?>
                         <div class="col-lg-2">
                             <hr>
-                            <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?slot_id=<?php echo $data['slot_id']; ?>&&user_id=<?php echo $user_id; ?>">Slot
+                            <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="inlude/confirm_slot2.php?slot_id=<?php echo $data['slot_id']; ?>&&uid=<?php echo 1; ?>">Slot
                                 <?php echo $data['slot_id']; ?>
                             </a>
                         </div>
