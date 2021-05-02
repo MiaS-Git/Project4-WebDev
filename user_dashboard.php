@@ -23,6 +23,7 @@ $row = mysqli_fetch_array($result);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+	   font-family: Arial, Helvetica, sans-serif;
         }
 
         .container {
@@ -36,10 +37,42 @@ $row = mysqli_fetch_array($result);
         .jumbotron {
             border-radius: 0px;
         }
+	
+	.topnav {
+ 	 overflow: hidden;
+  	background-color: white;
+	}
+
+	.topnav a {
+ 	 float: right;
+ 	 color: black;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: right;
+  	font-size: 17px;
+	}
+	
+	.topnav a:hover {
+ 	 background-color: #ddd;
+  	color: black;
+	}
+
+	.topnav a.active {
+ 	 background-color: #04AA6D;
+  	color: white;
+	}
     </style>
 </head>
 
 <body>
+	<div class="topnav">
+		<a href="profile.php">Profile</a>
+  		<a href="checkout.html">Checkout</a>
+		<a href="cart.html">Cart</a>
+	</div>
+
+	<div style="padding-left:16px"> </div>
+
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-5">
@@ -49,6 +82,7 @@ $row = mysqli_fetch_array($result);
             <center>
                 <hr class="my-4">
                 <a class="btn btn-primary btn-lg" href="check_booking.php?uid=<?php echo $row['uid'] ?>" role="button">Book</a>
+		 <a class="btn btn-primary btn-lg" href="rental.html?uid=<?php echo $row['uid'] ?>" role="button">Rent a car</a>
             </center>
         </div>
     </div>
