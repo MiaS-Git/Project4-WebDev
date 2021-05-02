@@ -16,8 +16,8 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <style>
         .btn {
             border-radius: 0;
