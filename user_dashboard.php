@@ -1,11 +1,15 @@
 <?php
 
+    session_start();
+
 include('include/connect.php');
-$user_id = 1;
-$sql = "SELECT * FROM `users` WHERE uid=$uid";
+//$user_id = 1;
+$user = $_SESSION['uname'];
+$sql = "SELECT * FROM `users` WHERE user_name='$user'";
+
 //echo $sql;exit;
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +71,7 @@ $row = mysqli_fetch_array($result);
 <body>
 	<div class="topnav">
 		<a href="profile.php">Profile</a>
-  		<a href="checkout.html">Checkout</a>
+  		<!--<a href="checkout.html">Checkout</a>-->
 		<a href="cart.html">Cart</a>
 	</div>
 
@@ -76,13 +80,13 @@ $row = mysqli_fetch_array($result);
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-5">
-                <?php echo "WELCOME "; ?> <b> <?php echo strtoupper($row['uname']); ?>! </b>
+                <?php echo "WELCOME "; ?> <b> <?php echo strtoupper($row['first_name']); ?>! </b>
             </h1>
             <p class="lead">List & Rent your Space for Parking.</p>
             <center>
                 <hr class="my-4">
-                <a class="btn btn-primary btn-lg" href="check_booking.php?uid=<?php echo $row['uid'] ?>" role="button">Book</a>
-		 <a class="btn btn-primary btn-lg" href="rental.html?uid=<?php echo $row['uid'] ?>" role="button">Rent a car</a>
+                <a class="btn btn-primary btn-lg" href="check_booking.php?uid=<?php echo $row['user_name'] ?>" role="button">Book</a>
+		 <a class="btn btn-primary btn-lg" href="rental.php" role="button">Rent a car</a>
             </center>
         </div>
     </div>

@@ -15,8 +15,8 @@
     <link rel="shortcut icon" href="/images/car-logo.png" />
     <title><?= $title ?> - Profile</title>
 
-    <link href="bootstrap.min.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
 

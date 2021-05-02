@@ -106,7 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnMainModalClose.addEventListener('click', () => {               
         $('#mainModal').modal("hide");
-        // redirect to home page
+
+        localStorage.removeItem('cart');
+        window.location.replace('user_dashboard.php');
     });
 
 });

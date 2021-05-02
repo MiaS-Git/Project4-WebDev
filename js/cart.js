@@ -141,19 +141,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnRedeem = document.querySelector('#btn_redeem');
     const btnMainModalClose = document.querySelector('#mainModalClose');
         
-    createSampleData();     // function used for testing purpose only
+    //createSampleData();     // function used for testing purpose only
     loadSavedCartItems();
 
     btnCheckout.addEventListener('click', () => {
 
         const products = JSON.parse(localStorage.getItem('cart'));
 
-        if (products.length == 0) {
+        if (products == null) {
             showModalMessage('Empty cart', 'You cart is empty. You cannot proceed with an empty cart');            
         } else {
-            window.location.replace('checkout.html');
-
+            if (products.length == 0) {
+                showModalMessage('Empty cart', 'You cart is empty. You cannot proceed with an empty cart');            
+            } else {
+                window.location.replace('checkout.html');
+    
+            }
         }
+
     }); 
     
     btnMainModalClose.addEventListener('click', () => {               

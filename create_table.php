@@ -6,10 +6,11 @@
 
     $sql = 'CREATE TABLE IF NOT EXISTS `users` '
         .'(id int(20) AUTO_INCREMENT,'
-        .'username varchar(60),'
+        .'user_name varchar(60),'
         .'password varchar(60),'
-        .'firstname varchar(60),'
-        .'lastname varchar(60),'
+        .'first_name varchar(60),'
+        .'last_name varchar(60),'
+        .'email varchar(60),'
         .'primary key (id))';
 
     mysqli_query($conn, $sql);

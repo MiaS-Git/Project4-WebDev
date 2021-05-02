@@ -1,10 +1,10 @@
-
 <?php
 
     session_start();
 
-    $sqluser = "user";
-    $sqlpassword = "password";
+    $sqluser = "php";
+    $sqlpassword = "php";
+    $sqldatabase = "app";
 
 
     $post = $_SERVER['REQUEST_METHOD']=='POST';
@@ -28,19 +28,19 @@
             $peq = $_POST['pass']==$_POST['repass'];
             if($unmatch&&$fnmatch&&$lnmatch&&$emmatch&&$pmatch&&$peq) {
                 try {
-                    $pdo = new PDO("mysql:host=localhost;dbname=".$sqldatabase,$sqluser,$sqlpassword);
+                    $pdo = new PDO("mysql:host=db;dbname=".$sqldatabase,$sqluser,$sqlpassword);
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e) {
                     exit($e->getMessage());
                 }
-                $st = $pdo->prepare('SELECT * FROM list WHERE user_name=?');
+                $st = $pdo->prepare('SELECT * FROM users WHERE user_name=?');
                 $st->execute(array($_POST['uname']));
                 $uname_err = $st->fetch() != null;
-                $st = $pdo->prepare('SELECT * FROM list WHERE email=?');
+                $st = $pdo->prepare('SELECT * FROM users WHERE email=?');
                 $st->execute(array($_POST['email']));
                 $email_err = $st->fetch() != null;
                 if(!$uname_err&&!$email_err) {
-                    $stmt = 'INSERT INTO list(user_name,first_name,last_name,email,password) VALUES (?,?,?,?,?)';
+                    $stmt = 'INSERT INTO users(user_name,first_name,last_name,email,password) VALUES (?,?,?,?,?)';
                     $pdo->prepare($stmt)->execute(array(
                         $_POST['uname'],
                         $_POST['fname'],
@@ -51,7 +51,7 @@
                     $_SESSION["uname"] = $_POST["uname"];
                     $_SESSION["pass"] = $_POST["pass"];
                     $_SESSION["fname"] = $_POST["fname"];
-                    header("Location:success.php");
+                    header("Location:login.php");
                     exit;
                 }
             }

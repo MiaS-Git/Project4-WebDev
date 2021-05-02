@@ -1,10 +1,10 @@
-
 <?php
 
     session_start();
 
-    $sqluser = "user";
-    $sqlpassword = "password";
+    $sqluser = "php";
+    $sqlpassword = "php";
+    $sqldatabase = "app";
 
 
     $post = $_SERVER['REQUEST_METHOD']=='POST';
@@ -16,23 +16,23 @@
 
         else {
                 try {
-                    $pdo = new PDO("mysql:host=localhost;dbname=".$sqldatabase,$sqluser,$sqlpassword);
+                    $pdo = new PDO("mysql:host=db;dbname=".$sqldatabase,$sqluser,$sqlpassword);
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e) {
                     exit($e->getMessage());
                 }
-                $st = $pdo->prepare('SELECT * FROM list WHERE user_name=?');
+                $st = $pdo->prepare('SELECT * FROM users WHERE user_name=?');
                 $st->execute(array($_POST['uname']));
                 $r=$st->fetch();
                 if($r != null && $r["password"]==$_POST['pass']) {
-                    echo $_POST["uname"];
-                    echo $_POST["pass"];
+                    //echo $_POST["uname"];
+                    //echo $_POST["pass"];
                     $_SESSION["uname"] = $_POST["uname"];
                     $_SESSION["pass"] = $_POST["pass"];
                     $_SESSION["fname"] = $r["first_name"];
-                    echo $_SESSION["uname"];
-                    echo $_SESSION["pass"];
-                    header("Location:success.php");
+                    //echo $_SESSION["uname"];
+                    //echo $_SESSION["pass"];
+                    header("Location:user_dashboard.php");
                     exit;
                 } else $login_err = true;
         }
