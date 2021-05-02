@@ -1,13 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
-    header("location:../user_login.php");
-}
 
 include('../include/connect.php');
-include('../assets/phpqrcode-master/qrlib.php');
 
-$user_id = $_GET['user_id'];
+
+$uid = 1];
 $slot_id = $_GET['slot_id'];
 
 $sql = "SELECT * FROM parking_details WHERE user_id=$user_id";
@@ -25,22 +21,18 @@ $sql3 = "UPDATE `slot_master` SET `slot_status`=1 WHERE slot_id=$slot_id";
 
 $result3 = mysqli_query($conn, $sql3);
 
-$filename = $user_id . $slot_id;
-$path = '../uploads/qr_codes/';
-$file = $path . $filename . ".png";
-$file2 = $filename . ".png";
+$filename = $uid . $slot_id;
+
 //ECHO $file2;exit;
 $ecc = 'L';
 $pixel_Size = 20;
 $frame_Size = 5;
 
-QRcode::png($booking_code, $file, $ecc, $pixel_Size, $frame_Size);
 
-
-$sql2 = "UPDATE `parking_details` SET `slot_id`='$slot_id',`booking_code`='$booking_code', `qr_code`='$file2' WHERE user_id=$user_id";
+$sql2 = "UPDATE `parking_details` SET `slot_id`='$slot_id',`booking_code`='$booking_code' WHERE uid=$uid";
 $result2 = mysqli_query($conn, $sql2);
 //echo $sql2;exit;
-$sql3 = "SELECT * FROM `users` WHERE `user_id`='$user_id'";
+$sql3 = "SELECT * FROM `users` WHERE `uid`='$uid'";
 $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 
