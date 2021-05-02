@@ -41,7 +41,25 @@
         .'PRIMARY KEY (`id`)'
         .') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;';
 
-    mysqli_query($conn, $sql);        
+    mysqli_query($conn, $sql);      
+    
+    $sql = 'CREATE TABLE IF NOT EXISTS rental ('
+        .'`car_type` VARCHAR(45) NOT NULL,'
+        .'`price` DECIMAL(11,2) NOT NULL,'
+        .'PRIMARY KEY (`car_type`));';
 
+    mysqli_query($conn, $sql);          
+
+    $sql = "INSERT IGNORE INTO rental(car_type, price) VALUES ('SUV', 200.99);";
+    mysqli_query($conn, $sql);          
+
+    $sql = "INSERT IGNORE INTO rental(car_type, price) VALUES ('Compact', 59.99);";
+    mysqli_query($conn, $sql);          
+
+    $sql = "INSERT IGNORE INTO rental(car_type, price) VALUES ('Midsize', 100.99);";
+    mysqli_query($conn, $sql);          
+
+    $sql = "INSERT IGNORE INTO rental(car_type, price) VALUES ('Luxury', 500.99);";
+    mysqli_query($conn, $sql);          
 
 ?>
