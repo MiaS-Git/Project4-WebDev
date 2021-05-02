@@ -2,6 +2,12 @@
 
     session_start();
 
+    // user not logged-in
+    if (!isset($_SESSION['uname'])) {
+        header("location:login.php");
+        exit;
+    }
+
 include('include/connect.php');
 //$user_id = 1;
 $user = $_SESSION['uname'];
@@ -72,7 +78,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	<div class="topnav">
 		<a href="profile.php">Profile</a>
   		<!--<a href="checkout.html">Checkout</a>-->
-		<a href="cart.html">Cart</a>
+		<a href="cart.php">Cart</a>
 	</div>
 
 	<div style="padding-left:16px"> </div>

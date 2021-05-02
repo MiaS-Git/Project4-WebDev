@@ -1,4 +1,13 @@
 <?php 
+
+    session_start();
+
+    // user not logged-in
+    if (!isset($_SESSION['uname'])) {
+        header("location:login.php");
+        exit;
+    }
+
     include('config.php'); 
 
     // connect to DB

@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (products.length == 0) {
                 showModalMessage('Empty cart', 'You cart is empty. You cannot proceed with an empty cart');            
             } else {
-                window.location.replace('checkout.html');
+                window.location.replace('checkout.php');
     
             }
         }
