@@ -47,8 +47,8 @@ $row3 = mysqli_fetch_assoc($result3);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmed Ticket</title>
-    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
