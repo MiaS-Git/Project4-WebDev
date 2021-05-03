@@ -42,7 +42,7 @@ include('include/connect.php');
     if($data=mysqli_num_rows($result_check) == 1){ 
         ?>
         <div class="alert alert-dark" role="alert">
-            You already have booking!<a href="user_dashboard.php"> Go Back</a>
+            You've been booked<a href="user_dashboard.php"> Go Back</a>
         </div>
         <?php
         } else {
