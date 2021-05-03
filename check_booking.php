@@ -1,6 +1,9 @@
 <?php
 //SESSION
-
+session_start();
+if(!isset($_SESSION['id']) || empty($_SESSION['id'])){
+	header("location:login.php");
+}
 include('include/connect.php');
 ?>
 
@@ -29,9 +32,9 @@ include('include/connect.php');
 
     <div class="container">
         <?php
-    $user_id=1;
+    $user_id=$_GET['id'];
 
-    $check="SELECT * FROM parking_details where uid='1'";
+    $check="SELECT * FROM parking_details where id='$id'";
     //echo $sql;
     //exit;
     $result_check=mysqli_query($conn,$check);
@@ -43,7 +46,7 @@ include('include/connect.php');
         </div>
         <?php
         } else {
-        header("location:include/select_datetime.php?user_id=".$uid);
+        header("location:source/select_datetime.php?id=".$id);
         }
         ?>
 
