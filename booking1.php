@@ -7,7 +7,7 @@ include('include/connect.php');
 
 $id = $_GET['id'];
 //POST from select_datetime.php
-$slot_date = $_POST['slot_date'];
+$spot_date = $_POST['spot_date'];
 $start_time = $_POST['start_time'];
 $no_of_hr = $_POST['no_of_hr'];
 $parking_type = $_POST['parking_type'];
