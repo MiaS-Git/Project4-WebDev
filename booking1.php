@@ -109,12 +109,12 @@ $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
 $sql_user = "SELECT * FROM users WHERE id='$id'";
 $result_user = mysqli_query($conn, $sql_user);
 $row_user = mysqli_fetch_assoc($result_user);
-$uname = $row_user['uname'];
+$user_name = $row_user['user_name'];
 if (isset($_POST['submit'])) {
     $sql_check = "SELECT * FROM parking_details WHERE id='$id'";
     $result_check = mysqli_query($conn, $sql_check);
     if (mysqli_fetch_assoc($result_check) == 0) {
-        $sql = "INSERT INTO `parking_details`(`uname`,`id`, `spot_date`, `start_time`,`no_of_hr`,`exit_time`,`parking_type`) VALUES ('$uname','$id','$spot_date','$start_time','$no_of_hr','$exit_time','$parking_type' )";
+        $sql = "INSERT INTO `parking_details`(`user_name`,`id`, `spot_date`, `start_time`,`no_of_hr`,`exit_time`,`parking_type`) VALUES ('$user_name','$id','$spot_date','$start_time','$no_of_hr','$exit_time','$parking_type' )";
 
         $result = mysqli_query($conn, $sql);
     } else if (mysqli_fetch_assoc($result_check) == 1) {
