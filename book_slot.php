@@ -12,7 +12,7 @@ $row_user = mysqli_fetch_assoc($result_user);
 $uname = $row_user['uname'];
 
 if (isset($_POST['submit'])) {
-    $slot_date = $_POST['spot_date'];
+    $spot_date = $_POST['spot_date'];
     $start_time = $_POST['start_time'];
     $no_of_hr = $_POST['no_of_hr'];
    
