@@ -46,7 +46,7 @@ include('include/connect.php');
         </div>
         <?php
         } else {
-        header("location:source/select_datetime.php?id=".$id);
+        header("location:include/select_datetime.php?id=".$id);
         }
         ?>
 
