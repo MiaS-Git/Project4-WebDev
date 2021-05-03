@@ -17,18 +17,13 @@ $start_time = $row['start_time'];
 $spot_date = $row['spot_date'];
 
 $booking_code = $id . $spot_id . $spot_date . $start_time;
-//."-". rand(10*45, 100*98)
+
 
 $sql3 = "UPDATE `spots` SET `spot_status`=1 WHERE spot_id=$spot_id";
 
 
 $result3 = mysqli_query($conn, $sql3);
 
-
-//ECHO $file2;exit;
-$ecc = 'L';
-$pixel_Size = 20;
-$frame_Size = 5;
 
 
 $sql2 = "UPDATE `parking_details` SET `spot_id`='$spot_id',`booking_code`='$booking_code' WHERE id=$id";
@@ -132,9 +127,9 @@ $row3 = mysqli_fetch_assoc($result3);
                         <ul class="list-group list-group-flush">
                             <h4 class="card-text"><?php echo strtoupper($row3['uname']); ?></h4>
                             <li class="list-group-item">SPOT NUMBER : <?php echo $spot_id; ?></li>
-                            <li class="list-group-item">DATE :5/4/2021</li>
-                            <li class="list-group-item">TIME : 3:25pm</li>
-                            <li class="list-group-item">TOTAL PRICE : $250</li>
+                            <li class="list-group-item">DATE <?php echo $row_datetime['slot_date']; ?></li>
+                            <li class="list-group-item">TIME : <?php echo $row_datetime['start_time']; ?></li>
+                            <li class="list-group-item">TOTAL PRICE :<?php echo $row_datetime['exit_time']; ?></li>
 
                         
                         </ul>
