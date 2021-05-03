@@ -4,7 +4,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     header("location:../login.php");
 }
 
-include('../include/connect.php');
+include('connect.php');
 
 $id = $_GET['id'];
 $spot_id = $_GET['spot_id'];
@@ -25,16 +25,14 @@ $sql3 = "UPDATE `spots` SET `spot_status`=1 WHERE spot_id=$spot_id";
 $result3 = mysqli_query($conn, $sql3);
 
 
-
 $sql2 = "UPDATE `parking_details` SET `spot_id`='$spot_id',`booking_code`='$booking_code' WHERE id=$id";
+
 $result2 = mysqli_query($conn, $sql2);
-//echo $sql2;exit;
 $sql3 = "SELECT * FROM `users` WHERE `id`='$id'";
 $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
-
-//echo "<center><img src='".$file."'></center>"; 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +114,7 @@ $row3 = mysqli_fetch_assoc($result3);
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <center>
-                    <div class="card" style="width: 22rem;">
+                    <div class="card" style="width: 20rem;">
                         <h5>Parking Reservation</h5>
                         <small><?php echo date("d-m-Y") . ' ' . date("h:iA"); ?></small>
                         <hr>
