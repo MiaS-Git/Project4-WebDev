@@ -12,22 +12,21 @@ $row_user = mysqli_fetch_assoc($result_user);
 $uname = $row_user['uname'];
 
 if (isset($_POST['submit'])) {
-    $slot_date = $_POST['slot_date'];
-    //echo $slot_date; exit;
+    $slot_date = $_POST['spot_date'];
     $start_time = $_POST['start_time'];
     $no_of_hr = $_POST['no_of_hr'];
-    //echo $slot_date;
+   
 
     $exit_time = date('H:i', strtotime($start_time . '+ ' . $no_of_hr . ' hour'));
     //echo $exit_time; exit;
     $sql_check = "SELECT * FROM parking_details WHERE id='$id'";
     $result_check = mysqli_query($conn, $sql_check);
     if (mysqli_fetch_assoc($result_check) == 0) {
-        $sql = "INSERT INTO `parking_details`(`uname`,`id`, `slot_date`, `start_time`,`no_of_hr`,`exit_time`,`parking_type`) VALUES ('$uname','$id','$slot_date','$start_time','$no_of_hr','$exit_time','$parking_type' )";
+        $sql = "INSERT INTO `parking_details`(`uname`,`id`, `spot_date`, `start_time`,`no_of_hr`,`exit_time`,`parking_type`) VALUES ('$uname','$id','$spot_date','$start_time','$no_of_hr','$exit_time','$parking_type' )";
 
         $result = mysqli_query($conn, $sql);
     } else if (mysqli_fetch_assoc($result_check) == 1) {
-        $sql = "UPDATE`parking_details` SET `slot_date`='$slot_date',`start_time`='$start_time',`no_of_hr`='$no_of_hr',`exit_time`='$exit_time', `parking_type`='$parking_type' WHERE $id='$id'";
+        $sql = "UPDATE`parking_details` SET `spot_date`='$spot_date',`start_time`='$start_time',`no_of_hr`='$no_of_hr',`exit_time`='$exit_time', `parking_type`='$parking_type' WHERE $id='$id'";
         $result = mysqli_query($conn, $sql);
     }
 }
@@ -38,9 +37,9 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <title>Confirm a spot</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <style>
         .btn {
             border-radius: 0;
@@ -57,7 +56,6 @@ if (isset($_POST['submit'])) {
         }
 
         body {
-            background-image: url('images/wall.jpg');
             position: auto;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -69,21 +67,21 @@ if (isset($_POST['submit'])) {
 <body>
     <?php include('header_user.php'); ?>
     <div class="container">
-        <h3>Select slot</h3>
+        <h3>Select a spot</h3>
         <div class="row">
             <?php
-            $sql_slot = "SELECT * FROM slot_master";
+            $sql_slot = "SELECT * FROM spots";
             $result_slot = mysqli_query($conn, $sql_slot);
             while ($data = mysqli_fetch_array($result_slot)) {
-                if ($data['slot_status'] == 0) {
+                if ($data['spot_status'] == 0) {
             ?>
                     <div class="col-lg-2">
                         <hr>
-                        <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?slot_id=<?php echo $data['slot_id']; ?>&&id=<?php echo $id; ?>">Slot
-                            <?php echo $data['slot_id']; ?>
+                        <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?spot_id=<?php echo $data['spot_id']; ?>&&id=<?php echo $id; ?>">Spot
+                            <?php echo $data['spot_id']; ?>
                         </a>
                     </div>
-                    <?php } else if ($data['slot_status'] == 1) {
+                    <?php } else if ($data['spot_status'] == 1) {
                     $sql_time = "SELECT * FROM parking_details";
                     $result_time = mysqli_query($conn, $sql_time);
                     $row_time = mysqli_fetch_assoc($result_time);
@@ -97,16 +95,16 @@ if (isset($_POST['submit'])) {
                     ) {
                     ?> <div class="col-lg-2">
                             <hr>
-                            <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?slot_id=<?php echo $data['slot_id']; ?>&&id=<?php echo $id; ?>">Slot
-                                <?php echo $data['slot_id']; ?>
+                            <a type=" button" class="btn btn-outline-primary btn-lg btn-block" href="source/confirm_slot.php?spot_id=<?php echo $data['spot_id']; ?>&&id=<?php echo $id; ?>">Spot
+                                <?php echo $data['spot_id']; ?>
                             </a>
                         </div>
                     <?php } else {
                     ?>
                         <div class="col-lg-2">
                             <hr>
-                            <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Slot
-                                <?php echo $data['slot_id']; ?>
+                            <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Spot
+                                <?php echo $data['spot_id']; ?>
                             </button>
                         </div>
             <?php  }
@@ -116,9 +114,9 @@ if (isset($_POST['submit'])) {
             <p>
                 <small>
                     <img src="images/icon/red_block.png" height="20px" width="20px" style="border:1px solid;">
-                    slot already booked<br>
+                    spot already booked<br>
                     <img src=" images/icon/white_block.png" height="20px" width="20px" style="border:1px solid;">
-                    slot available
+                    spot available
                 </small>
             </p>
         </div>
