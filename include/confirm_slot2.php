@@ -1,27 +1,29 @@
 <?php
+session_start();
+if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
+    header("location:../user_login.php");
+}
 
 include('../include/connect.php');
 
+$id = $_GET['id'];
+$spot_id = $_GET['spot_id'];
 
-$uid = 1];
-$slot_id = $_GET['slot_id'];
-
-$sql = "SELECT * FROM parking_details WHERE user_id=$user_id";
+$sql = "SELECT * FROM parking_details WHERE id=$id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
 $start_time = $row['start_time'];
-$slot_date = $row['slot_date'];
+$spot_date = $row['spot_date'];
 
-$booking_code = $user_id . $slot_id . $slot_date . $start_time;
+$booking_code = $id . $spot_id . $spot_date . $start_time;
 //."-". rand(10*45, 100*98)
 
-$sql3 = "UPDATE `slot_master` SET `slot_status`=1 WHERE slot_id=$slot_id";
+$sql3 = "UPDATE `spots` SET `spot_status`=1 WHERE spot_id=$spot_id";
 
 
 $result3 = mysqli_query($conn, $sql3);
 
-$filename = $uid . $slot_id;
 
 //ECHO $file2;exit;
 $ecc = 'L';
@@ -29,10 +31,10 @@ $pixel_Size = 20;
 $frame_Size = 5;
 
 
-$sql2 = "UPDATE `parking_details` SET `slot_id`='$slot_id',`booking_code`='$booking_code' WHERE uid=$uid";
+$sql2 = "UPDATE `parking_details` SET `spot_id`='$spot_id',`booking_code`='$booking_code' WHERE id=$id";
 $result2 = mysqli_query($conn, $sql2);
 //echo $sql2;exit;
-$sql3 = "SELECT * FROM `users` WHERE `uid`='$uid'";
+$sql3 = "SELECT * FROM `users` WHERE `id`='$id'";
 $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 
@@ -75,11 +77,40 @@ $row3 = mysqli_fetch_assoc($result3);
         small {
             font-size: 15px;
         }
+        .topnav {
+ 	 overflow: hidden;
+  	background-color: white;
+	}
+
+	.topnav a {
+ 	 float: right;
+ 	 color: black;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: right;
+  	font-size: 17px;
+	}
+	
+	.topnav a:hover {
+ 	 background-color: #ddd;
+  	color: black;
+	}
+
+	.topnav a.active {
+ 	 background-color: #04AA6D;
+  	color: white;
+	}
     </style>
 </head>
 
 
+
 <body>
+	<div class="topnav">
+		<a href="profile.php">Profile</a>
+  		<a href="checkout.html">Checkout</a>
+		<a href="cart.html">Cart</a>
+	</div>
     <div class="container">
         <div class="alert alert-success" role="alert">
             Sucessfully confirmed!
@@ -91,21 +122,25 @@ $row3 = mysqli_fetch_assoc($result3);
             <div class="col-lg-6">
                 <center>
                     <div class="card" style="width: 22rem;">
-                        <h5>ONLINE PARKING BOOKING</h5>
-                        <small>**Address** <?php echo date("d-m-Y") . ' ' . date("h:iA"); ?></small>
+                        <h5>Parking Reservation</h5>
+                        <small><?php echo date("d-m-Y") . ' ' . date("h:iA"); ?></small>
                         <hr>
-                        <img src="<?php echo $file ?>" class="card-img-top" style="width:200px;height:200px; margin-left: auto;margin-right: auto;" alt="booking qr">
                         <div class="card" style="padding:2px;border: 2px solid black;border-left:none;border-right:0px;border-radius:0px;">
                             TICKET NUMBER :
                             <?PHP echo $booking_code ?>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <h4 class="card-text"><?php echo strtoupper($row3['user_name']); ?></h4>
-                            <li class="list-group-item">SLOT NUMBER : <?php echo $slot_id; ?></li>
-                            <li class="list-group-item">DATE : <?php echo $row['slot_date']; ?></li>
-                            <li class="list-group-item">TIME : <?php echo $row['start_time']; ?></li>
-                            <li class="list-group-item">TOTAL PRICE : $<?php echo $row['no_of_hr'] * 10; ?></li>
+                            <h4 class="card-text"><?php echo strtoupper($row3['uname']); ?></h4>
+                            <li class="list-group-item">SPOT NUMBER : <?php echo $spot_id; ?></li>
+                            <li class="list-group-item">DATE :5/4/2021</li>
+                            <li class="list-group-item">TIME : 3:25pm</li>
+                            <li class="list-group-item">TOTAL PRICE : $250</li>
+
+                        
                         </ul>
+                    </div>
+                    <div>
+                        </a>
                     </div>
 
                 </center>
