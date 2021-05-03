@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
-    header("location:../user_login.php");
+    header("location:../login.php");
 }
 
 include('../include/connect.php');
@@ -46,7 +46,7 @@ $row3 = mysqli_fetch_assoc($result3);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmed Ticket</title>
+    <title>Ticket</title>
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
