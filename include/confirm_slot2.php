@@ -123,7 +123,7 @@ $row3 = mysqli_fetch_assoc($result3);
                             <?PHP echo $booking_code ?>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <h4 class="card-text"><?php echo strtoupper($row3['uname']); ?></h4>
+                            <h4 class="card-text"><?php echo strtoupper($row3['user_name']); ?></h4>
                             <li class="list-group-item">SPOT NUMBER : <?php echo $spot_id; ?></li>
                             <li class="list-group-item">DATE <?php echo $row_datetime['slot_date']; ?></li>
                             <li class="list-group-item">TIME : <?php echo $row_datetime['start_time']; ?></li>
