@@ -127,7 +127,7 @@ $row3 = mysqli_fetch_assoc($result3);
                             <li class="list-group-item">SPOT NUMBER : <?php echo $spot_id; ?></li>
                             <li class="list-group-item">DATE <?php echo $row_datetime['slot_date']; ?></li>
                             <li class="list-group-item">TIME : <?php echo $row_datetime['start_time']; ?></li>
-                            <li class="list-group-item">TOTAL PRICE :<?php echo $row_datetime['exit_time']; ?></li>
+                            <li class="list-group-item">TOTAL PRICE :<?php echo $row_datetime['no_of_hr']; ?>*<?php echo $row_datetime['parking_type']; ?</li>
 
                         
                         </ul>
