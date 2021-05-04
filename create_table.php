@@ -61,5 +61,4 @@
 
     $sql = "INSERT IGNORE INTO rental(car_type, price) VALUES ('Luxury', 500.99);";
     mysqli_query($conn, $sql);          
-
 ?>
